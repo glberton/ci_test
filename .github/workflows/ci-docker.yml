@@ -1,0 +1,38 @@
+name: CI - Playwright Docker
+
+on:
+    push:
+        branches: [ main ]
+    pull_request:
+        branches: [ main ]
+
+jobs:
+    playwright-tests:
+        name: Executar testes Playwright
+        runs-on: ubuntu-latest
+        
+        steps:
+            - name: Baixar código do repositório
+              uses: actions/checkout@v6
+            
+            - name: Preparar diretório de relatórios
+              run: |
+                mkdir -p reports
+                rm -rf reports/*
+
+            - name: Construir imagem Docker
+              run: docker build -t ci-test-playwright:1.0 .
+
+            - name: Executar testes
+              run: |
+                docker run --rm --mount type=bind,source="${{ github.workspace }}/reports",target=/app/reports \
+                    ci-test-playwright:1.0
+
+            - name: Publicar relatório HTML
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: playwright-report
+                  path: reports/
+                  if-no-files-found: warn
+                  retention-days: 7

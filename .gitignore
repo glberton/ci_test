@@ -1,0 +1,10 @@
+.git/
+.pytest_cache/
+.pytest/
+.robot/
+.venv/
+.vscode/
+__pycache__/
+reports/
+*.log
+*.pyc
