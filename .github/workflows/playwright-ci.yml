@@ -30,7 +30,7 @@ jobs:
             
             - name: Executar testes do Playwright
               run: |
-                  pytest --headless
+                  pytest
             
             - name: Publicar relatório HTML
               if: always()
