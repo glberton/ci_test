@@ -7,7 +7,7 @@ on:
         branches: [ main ]
 
 jobs:
-    playwright-tests:
+    playwright-tests-no-docker:
         name: Executar testes Playwright sem Docker
         runs-on: ubuntu-latest
         
@@ -34,7 +34,9 @@ jobs:
                 rm -rf reports/*
 
             - name: Executar testes
-              run: pytest
+              run: |
+                  echo "Iniciando execução dos testes..."
+                  time pytest
 
             - name: Publicar relatório HTML
               if: always()

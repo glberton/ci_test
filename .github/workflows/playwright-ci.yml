@@ -7,8 +7,8 @@ on:
         branches: [ main ]
 
 jobs:
-    testes_playwright:
-        name: Testes Playwright
+    testes_playwright_docker_oficial:
+        name: Testes Playwright com Docker oficial
         runs-on: ubuntu-latest
         container:
             image: mcr.microsoft.com/playwright/python:v1.64.1
@@ -30,7 +30,8 @@ jobs:
             
             - name: Executar testes do Playwright
               run: |
-                  pytest
+                  echo "Iniciando execução dos testes..."
+                  time pytest
             
             - name: Publicar relatório HTML
               if: always()

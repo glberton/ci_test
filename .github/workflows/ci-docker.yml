@@ -7,8 +7,8 @@ on:
         branches: [ main ]
 
 jobs:
-    playwright-tests:
-        name: Executar testes Playwright
+    playwright-tests-docker:
+        name: Executar testes Playwright com Docker
         runs-on: ubuntu-latest
         
         steps:
