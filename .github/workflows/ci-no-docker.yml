@@ -35,8 +35,7 @@ jobs:
 
             - name: Executar testes
               run: |
-                  echo "Iniciando execução dos testes..."
-                  time pytest
+                  pytest
 
             - name: Publicar relatório HTML
               if: always()
