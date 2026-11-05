@@ -1,4 +1,4 @@
-name: CD - Publicar Imagem Docker no GHCR
+name: CD - Publicar Imagem Docker Playwright no GHCR
 
 on:
     workflow_run:
@@ -17,7 +17,7 @@ permissions:
 
 jobs:
     publish:
-        name: Publicar imagem no GHCR
+        name: Publicar imagem Playwright no GHCR
         runs-on: ubuntu-latest
 
         permissions:
@@ -33,7 +33,7 @@ jobs:
             - name: Baixar código do repositório
               uses: actions/checkout@v6
               with:
-                  ref: ${{ github.event.workflow_run.head_sha}}
+                  ref: ${{ github.event.workflow_run.head_sha }}
 
             - name: Normalizar nome da imagem
               run: |
@@ -58,7 +58,6 @@ jobs:
                   tags: |
                       type=sha
                       type=raw,value=latest
-
 
             - name: Construir e publicar imagem
               uses: docker/build-push-action@v7
